@@ -140,6 +140,7 @@ def account():
 @app.route('/post/new', methods=['GET', 'POST'])
 @login_required
 def new_post():
+    '''Route for creating posts'''
     form = PostForm()
     if form.validate_on_submit():
         post =Post(title=form.title.data, content=form.content.data, author=current_user)
@@ -155,5 +156,10 @@ def new_post():
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
-    post=Post.query.get_or_404(post_id)
+    '''
+    Route for editing and deleting post
+    :param post_id: intiger
+    :return: redirect for post if post in database, else 404
+    '''
+    post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title,post=post)

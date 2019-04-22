@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError #podanie danych obowiazkowe i dlugosc danych i czy email
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 
 
@@ -43,7 +43,7 @@ class UpdateAccountForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    picture = FileField('Update profile picture', validators=[FileAllowed(['jpg','png'])])    # to w pierwszych '' to label naszego field
+    picture = FileField('Update profile picture', validators=[FileAllowed(['jpg', 'png'])])    # to w pierwszych '' to label naszego field
     submit = SubmitField('Update')
 
     def validate_username(self, username):
